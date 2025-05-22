@@ -1,0 +1,12 @@
+import {Client} from 'pg'
+
+const pgDatabase=new Client({
+    host:'localhost',
+    port:5434,
+    user:'postgres',
+    password:'root',
+    database:'modelo_equiposs'
+})
+
+pgDatabase.connect()
+export default pgDatabase; 
