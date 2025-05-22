@@ -23,7 +23,7 @@ export default class EquiposController{
             return response.status(400).json({mensaje:"DATOS INVALIDOS BOBA"});
         } try{
             const resul=await pgDatabase.query(
-                `INSERT INTO equipo(nombre, anio_fundacion, dni_presidente) VALUES ($1,$2,$3)`,
+                `INSERT INTO  equipo(nombre, anio_fundacion, dni_presidente) VALUES ($1,$2,$3)`,
                  [nombre,anio_fundacion,dni_presidente]
             );
             if (resul.rowCount>0){
