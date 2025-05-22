@@ -26,9 +26,10 @@ class PresiController{
         await pgDatabase.query("UPDATE equipos SET nombre = $1 WHERE dni = $2", [nombre,params.dni])
         return response.json({mensaje: "Presidente actualizado con exito", nombre})
     }
-    async eliminarPresi({params,response}){
-        const res = await pgDatabase.query("DELETE FROM equipos WHERE dni = $1", [params.id])
-        return response.json({mensaje: "Presidente eliminado con exito"})
+    async eliminarPresi({params,}){
+        const dni = params.dni
+        await pgDatabase.query("DELETE FROM equipos WHERE dni = $1", [dni])
+        return {mensaje: "Presidente eliminado con exito"}
     }
 }
 export default PresiController;
