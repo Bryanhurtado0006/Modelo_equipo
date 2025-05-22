@@ -1,0 +1,34 @@
+import pgDatabase from "../db/pgDatabase";
+
+class PresiController{
+    async verPresi({response}){
+        const result = await pgDatabase.query("SELECT * FROM equipos");
+        return response.json({mensaje: result.rows})
+    }
+
+    async verPresiPorId({params,response}){
+        const id = params.id;
+        const result = await pgDatabase.query("SELECT * FROM equipos WHERE dni = $1", [id])
+        if (result){
+            return response.status(200).json({mensaje: result.rows})
+        }
+        else{
+            return response.status(404).json({mensaje: "No se encontraron resultados"})
+        }
+    }
+    async crearPresi({request,response}){
+        const {nombre}=await request.body();
+        await pgDatabase.query("INSERT INTO equipos (nombre) VALUES ($1)", [nombre])
+        return response.json({mensaje: "Presidente creado con exito", nombre})
+    }
+    async actualizarPresi({params,request,response}){
+        const {nombre }=await request.body();
+        await pgDatabase.query("UPDATE equipos SET nombre = $1 WHERE dni = $2", [nombre,params.dni])
+        return response.json({mensaje: "Presidente actualizado con exito", nombre})
+    }
+    async eliminarPresi({params,response}){
+        const res = await pgDatabase.query("DELETE FROM equipos WHERE dni = $1", [params.id])
+        return response.json({mensaje: "Presidente eliminado con exito"})
+    }
+}
+export default PresiController;
