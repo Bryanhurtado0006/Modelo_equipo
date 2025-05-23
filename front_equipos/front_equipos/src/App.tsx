@@ -1,5 +1,6 @@
 import './App.css'
 import Crear from './components/Crear'
+import ListarEquipo from './components/ListarEquipo'
 import { Routes } from 'react-router-dom'
 import { BrowserRouter as Router} from 'react-router-dom'
 import { Route } from 'react-router-dom'
@@ -12,6 +13,10 @@ function App() {
         <Nav></Nav>
         <Routes>
           <Route path='/crearPresi' element={<Crear></Crear>}></Route>
+
+
+          
+          <Route path='/ListarEquipo' element={<ListarEquipo></ListarEquipo>}></Route>
         </Routes>
       </Router>
 
