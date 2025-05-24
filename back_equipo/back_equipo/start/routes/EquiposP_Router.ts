@@ -14,8 +14,8 @@ router.delete('/presidente/:dni',Presidente.eliminarPresi)
 
 const Equipos=new EquiposController()
 
-router.get('/verEquipos' , Equipos.ver_equipos);
-router.get('/MostrarEquipos/:codigo',Equipos.mostrar_Equipos);
-router.post('/crear_equipos',Equipos.crear_equipos);
-router.put('/Act_equipos',Equipos.actualizar_Equipo);
-router.delete('/delete/:codigo',Equipos.eliminar_Equipo);
+router.get('/equipos',Equipos.ver_equipos);
+router.get('/equipos/:codigo',Equipos.mostrar_Equipos);
+router.post('/equipos',Equipos.crear_equipos);
+router.put('/equiposs/:codigo',Equipos.actualizar_Equipo);
+router.delete('/equipos/:codigo',Equipos.eliminar_Equipo);

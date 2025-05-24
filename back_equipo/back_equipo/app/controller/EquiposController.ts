@@ -1,5 +1,5 @@
 import { json } from "stream/consumers";
-import pgDatabase from "../db/pgDatabases.js";
+import pgDatabase from "../db/pgDatabase.ts";
 
 export default class EquiposController{
     //select*from equipos
@@ -42,14 +42,16 @@ export default class EquiposController{
 
     async mostrar_Equipos({params}){
         const codigo=params.codigo
-        const resul=await pgDatabase.query('select * from equipo where codigo=$1' [codigo])
+        const resul=await pgDatabase.query('select * from equipo where codigo=$1',[codigo])
         return resul.rows[0] || {mensaje: 'equipo no encontrado'}
     }
 
     async actualizar_Equipo({params,request}){
+
+        
         const codigo=params.codigo
-        const {nombre,anio_fundacion,dni_presidente}=request.body()
-        await pgDatabase.query('UPDATE equipo SET codigo=$1, nombre=$2, anio_fundacion=$3, dni_presidente=$4',[nombre,anio_fundacion,dni_presidente,codigo])
+        const {nombre,anio_fundacion,dni_presidente}=await request.body();
+        await pgDatabase.query('UPDATE equipo SET nombre=$1, anio_fundacion=$2, dni_presidente=$3 WHERE nombre=$4',[nombre,anio_fundacion,dni_presidente,codigo]);
         return{ mensaje: 'equipo actualizado correctamente'}
 
     }
@@ -57,7 +59,7 @@ export default class EquiposController{
     async eliminar_Equipo({params}){
         const codigo=params.codigo
         await pgDatabase.query('DELETE FROM equipo WHERE codigo=$1',[codigo])
-        return { mensaje:'Libro eliminado' }
+        return { mensaje:'Equipo eliminado' }
     }
 
 

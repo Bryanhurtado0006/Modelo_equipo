@@ -12,7 +12,13 @@ const Nav:React.FC=()=>{
                     <Link to="/ListarEquipo">Listar Equipo </Link>
                 </li>
                 <li>
-                    <Link to=""></Link>
+                    <Link to="/EditarEquipo'">Editar Equipo</Link>
+                </li>
+                  <li>
+                    <Link to="/CrearEquipo">Crear Equipo</Link>
+                </li>
+                <li>
+                    <Link to="/">Home</Link>
                 </li>
             </ul>
         </nav>

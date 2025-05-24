@@ -1,4 +1,4 @@
-import pgDatabase from "../db/pgDatabases.js";
+import pgDatabase from "../db/pgDatabase.ts";
 
 class PresiController{
     async verPresi({response}){
