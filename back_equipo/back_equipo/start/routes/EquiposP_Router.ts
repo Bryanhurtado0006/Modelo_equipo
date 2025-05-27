@@ -17,5 +17,5 @@ const Equipos=new EquiposController()
 router.get('/equipos',Equipos.ver_equipos);
 router.get('/equipos/:codigo',Equipos.mostrar_Equipos);
 router.post('/equipos',Equipos.crear_equipos);
-router.put('/equiposs/:codigo',Equipos.actualizar_Equipo);
+router.put('/equipos/:codigo',Equipos.actualizar_Equipo);
 router.delete('/equipos/:codigo',Equipos.eliminar_Equipo);

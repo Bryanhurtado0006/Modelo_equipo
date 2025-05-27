@@ -7,8 +7,8 @@ class PresiController{
     }
 
     async verPresiPorId({params,response}){
-        const id = params.id;
-        const result = await pgDatabase.query("SELECT * FROM presidente WHERE dni = $1", [id])
+        const dni = params.dni;
+        const result = await pgDatabase.query("SELECT * FROM presidente WHERE dni = $1", [dni])
         if (result){
             return response.status(200).json({mensaje: result.rows})
         }
