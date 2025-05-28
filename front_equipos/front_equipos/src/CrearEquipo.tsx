@@ -8,21 +8,41 @@ const CrearEquipo: React.FC = () => {
     const [mensaje, setMensaje] = useState('');
 
     const guardarEquipo = async () => {
-        const respuesta = await fetch('http://localhost:3333/equipos', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                nombre,
-                anio_fundacion: anioFundacion,
-                dni_presidente: dniPresidente
-            })
-        });
-        const resultado = await respuesta.json();
-        setMensaje(resultado.mensaje);
-        setNombre(''); // Siempre limpia, asume éxito
-        setAnioFundacion(0);
-        setDniPresidente(0);
-    };
+  if (!nombre.trim()) {
+    setMensaje("El nombre del equipo no puede estar vacío.");
+    return;
+  }
+
+  if (anioFundacion <= 0) {
+    setMensaje("El año debe ser mayor a 0.");
+    return;
+  }
+
+  if (!dniPresidente || dniPresidente <= 0) {
+    setMensaje("El dni del presidente debe ser valido.");
+    return;
+  }
+
+  const respuesta = await fetch("http://localhost:3333/equipos", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      nombre,
+      anio_fundacion: anioFundacion,
+      dni_presidente: dniPresidente
+    })
+  });
+
+  const resultado = await respuesta.json();
+  setMensaje(resultado.mensaje);
+
+  if (respuesta.ok) {
+    setNombre("");
+    setAnioFundacion(0);
+    setDniPresidente(0);
+  }
+};
+
 
    return (
         <div className="container">
@@ -42,7 +62,9 @@ const CrearEquipo: React.FC = () => {
                     <input type="number" id="dniPresidente" value={dniPresidente} onChange={(e) => setDniPresidente(Number(e.target.value))} />
                 </div>
                 <button className="btn" onClick={guardarEquipo}>Guardar</button>
-                {mensaje && <p className="message message-success">{mensaje}</p>} {/* Asume éxito */}
+                {mensaje && 
+                (<p className={`message ${mensaje.includes("éxito") ? "message-success" : "message-error"}`}>
+                {mensaje}</p>)} {/* Asume éxito */}
             </div>
         </div>
     );
