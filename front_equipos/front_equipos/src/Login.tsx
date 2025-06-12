@@ -24,7 +24,7 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="container">
+    <div className="login-container">
       <h2>Iniciar sesión</h2>
       <form onSubmit={IniciarLogueo}><input type="email"placeholder="Correo"value={email} onChange={(e) => setEmail(e.target.value)}
           required

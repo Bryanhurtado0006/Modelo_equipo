@@ -22,7 +22,7 @@ const Nav: React.FC <Navprops>= ({setAuth}) => {
                 <li><Link to="/listarPresi" className="nav-link">Listar Presidentes</Link></li>
                 <li><Link to="/CrearEquipo" className="nav-link">Crear Equipo</Link></li>
                 <li><Link to="/ListarEquipo" className="nav-link">Listar Equipos</Link></li>
-                <button onClick={logout}>cerrar</button>
+                <button onClick={logout}>📤</button>
             </ul>
         </nav>
     );

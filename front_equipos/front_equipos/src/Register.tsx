@@ -26,7 +26,7 @@ const Register: React.FC = () => {
   };
 
   return (
-    <div className="container">
+    <div className="login-container">
       <h2>Registro</h2>
       <form onSubmit={registrarUsuario }>
         <input
