@@ -1,0 +1,60 @@
+
+// 1 ✅  Listar equipos con su presidente
+SELECT 
+    e.codigo,
+    e.nombre AS nombre_equipo,
+    e.anio_fundacion,
+    p.dni,
+    p.nombre AS nombre_presidente
+FROM 
+    equipo e
+JOIN 
+    presidente p ON e.dni_presidente = p.dni;
+
+
+
+// 2 ➕ Crear un nuevo equipo y asignarle un president
+
+
+
+INSERT INTO presidente (nombre) VALUES ('Fernando Alvarez');
+
+
+INSERT INTO equipo (nombre, anio_fundacion, dni_presidente)
+VALUES ('Real Cartagena', 1991, 11);
+
+
+
+
+// 3 ✏️  Editar los datos del equipo y de su presidente
+
+
+UPDATE equipo
+SET nombre = 'Atlético Real',
+    anio_fundacion = 1995
+WHERE codigo = 1;
+
+
+UPDATE presidente
+SET nombre = 'Fernando A. Gómez'
+WHERE dni = (
+    SELECT dni_presidente FROM equipo WHERE codigo = 1
+);
+
+
+
+
+4. ❌ Eliminar un equipo (y su presidente asociado)
+
+
+
+SELECT dni_presidente FROM equipo WHERE codigo = 1;
+
+
+DELETE FROM equipo WHERE codigo = 1;
+
+
+DELETE FROM presidente WHERE dni = 1; -- reemplaza por el dni correcto
+
+
+ya esta chuxooo
