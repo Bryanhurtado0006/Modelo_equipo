@@ -2,10 +2,10 @@ import {Client} from 'pg'
 
 const pgDatabase=new Client({
     host:'localhost',
-    port:5433,
+    port:5434,
     user:'postgres',
     password:'root',
-    database:''
+    database:'modelo_equiposss'
 })
 
 pgDatabase.connect()

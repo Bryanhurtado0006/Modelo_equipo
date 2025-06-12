@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-import Nav from "./components/Nav";
+
 import Home from "./Home";
 import Crear from "./Crear";
 import ListarEquipo from "./ListarEquipo";
@@ -14,6 +14,7 @@ import Register from "./Register";
 import "./App.css"
 
 const App: React.FC = () => {
+  const aut=localStorage.getItem("auth")
   const [auth, setAuth] = useState<boolean>(false);
 
   useEffect(() => {
@@ -23,12 +24,12 @@ const App: React.FC = () => {
 
   return (
     <Router>
-      {auth && <Nav setAuth={setAuth} />} {/* Solo se muestra la Nav si está logeado */}
+      
 
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/home" element={auth ? <Home /> : <Login />} />
+        <Route path="/home" element={auth? <Home></Home>:<Login></Login>} />
         <Route path="/crearPresi" element={<Crear />} />
         <Route path="/actualizar" element={<Editar />} />
         <Route path="/listarPresi" element={<Listado />} />

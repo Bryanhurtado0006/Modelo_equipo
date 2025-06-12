@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 const Login: React.FC = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
+  
   const [password, setPassword] = useState("");
 
   const IniciarLogueo = async (e: React.FormEvent) => {
@@ -15,8 +16,15 @@ const Login: React.FC = () => {
       body: JSON.stringify({ email, password }),
     });
 
-    if (response.ok) {
+    const res = await response.json()
+    console.log(res);
+
+    if (res.msj =="Usuario logeado correctamente") {
+      
+      
       localStorage.setItem("auth", "true");
+      localStorage.setItem("email", email)
+      localStorage.setItem("nombre", res.nombre)
       navigate("/home");
     } else {
       alert("Login fallido");

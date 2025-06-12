@@ -49,7 +49,8 @@ class AuthUsuarioController {
       const valid = await hash.verify(usuario.password, password)
 
       if (valid) {
-        return response.json({ msj: "Usuario logeado correctamente" })
+        const name = res.rows[0].nombre
+        return response.json({ msj: "Usuario logeado correctamente", nombre:name })
       } else {
         return response.status(401).json({ msj: "Contraseña incorrecta" })
       }
