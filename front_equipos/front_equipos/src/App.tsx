@@ -23,7 +23,7 @@ const App: React.FC = () => {
 
   return (
     <Router>
-      {auth && <Nav />} {/* Solo se muestra la Nav si está logeado */}
+      {auth && <Nav setAuth={setAuth} />} {/* Solo se muestra la Nav si está logeado */}
 
       <Routes>
         <Route path="/" element={<Login />} />

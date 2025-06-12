@@ -1,10 +1,16 @@
 // src/components/Nav.tsx
 import { Link, useNavigate } from "react-router-dom";
 
-const Nav: React.FC = () => {
+interface Navprops{
+    setAuth:React.Dispatch<React.SetStateAction<boolean>>;
+
+}
+
+const Nav: React.FC <Navprops>= ({setAuth}) => {
     const navigate=useNavigate();
     const logout=()=>{
         localStorage.removeItem("auth");
+        setAuth(false);
         navigate("/");
     }
     return (

@@ -6,7 +6,7 @@ const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const IniciarLogueo = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const response = await fetch("http://localhost:3333/login", {
@@ -26,25 +26,14 @@ const Login: React.FC = () => {
   return (
     <div className="container">
       <h2>Iniciar sesión</h2>
-      <form onSubmit={handleLogin}>
-        <input
-          type="email"
-          placeholder="Correo"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+      <form onSubmit={IniciarLogueo}><input type="email"placeholder="Correo"value={email} onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <input
-          type="password"
-          placeholder="Contraseña"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+        <input type="password" placeholder="Contraseña" value={password} onChange={(e) => setPassword(e.target.value)}
           required
         />
         <button type="submit">Ingresar</button>
-        <Link
-          to="/register">Registrarse
-        </Link>
+        <Link to="/register">Registrarse </Link>
       </form>
     </div>
   );
